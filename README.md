@@ -18,5 +18,12 @@ AI Integration:
 This project uses Google's Gemini API
 for generating email replies.
 
+Frontend:
+1 Email input form
+2 Reply tone selection
+3 AI generated response
+4 Copy response feature
+5 Loading state
+
 The AI service is isolated inside the backend,
 allowing the provider to be changed easily.
