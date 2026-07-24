@@ -451,14 +451,14 @@ Example:
 
 ---
 
-# Future Improvements
+
 
 ## Authentication
 
 Add user accounts and personalized history.
 
 ---
-
+# Future Improvements
 ## Email Provider Integration
 
 Integrate:
@@ -499,36 +499,24 @@ Add:
 
 # Time Taken
 
-Approximately **2 hours 35 minutes**
+Approximately **2 hours 50 minutes**
 
-Breakdown:
-
-| Task | Time |
-|---|---:|
-| Planning and setup | 10 minutes |
-| Backend development | 35 minutes |
-| AI integration | 20 minutes |
-| Frontend development | 45 minutes |
-| Testing and polishing | 20 minutes |
-| Documentation | 25 minutes |
-
----
-
-# Screenshots
-
-Screenshots showing:
-
-- Application interface
-- Generated AI reply
-- Validation handling
-
-are available inside:
-
-```
-screenshots/
-```
+Project Timeline
+1) Started the assessment (3:25)
+2) Made the project folder structure (3:30)
+3) Initialized frontend/backend/git (3:33)
+4) Added a minimal README.md (3:35)
+5) Installed required packages for backend (3:37)
+6) Added email module and tested using Postman (4:18)
+7) Added basic frontend and connected with backend (4:30)
+8) Added enhancement in features (4:55)
+9) Initializing Database for Login/Signup features and Storing replies (5:25)
+10) Added Login/Signup features (5:50)
+11) Enhanced UI (6:15)
 
 ---
+
+
 
 # Git Workflow
 
