@@ -17,4 +17,8 @@ export class GenerateEmailDto {
   @IsString()
   @IsNotEmpty()
   tone!: string;
+
+  @IsString()
+@IsNotEmpty()
+length!:string;
 }

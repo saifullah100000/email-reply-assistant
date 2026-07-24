@@ -1,87 +1,48 @@
-import {useState} from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
-import EmailForm from "./components/EmailForm";
 
-import ReplyBox from "./components/ReplyBox";
-
-import {generateReply} from "./services/api";
-
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./Dashboard";
 
 
 function App(){
 
-
-const [reply,setReply]=useState("");
-
-const [loading,setLoading]=useState(false);
-
-
-
-async function handleGenerate(data){
-
-
-try{
-
-
-setLoading(true);
-
-
-const result =
-await generateReply(data);
-
-
-setReply(result.reply);
-
-
-
-}
-
-catch(error){
-
-alert(
-"Failed to generate reply"
-);
-
-
-}
-
-
-finally{
-
-setLoading(false);
-
-}
-
-
-}
-
-
-
 return (
 
-<div>
+<BrowserRouter>
+
+<Routes>
 
 
-<EmailForm
-
-onGenerate={handleGenerate}
-
-loading={loading}
-
+<Route 
+path="/login"
+element={<Login/>}
 />
 
 
-<ReplyBox
-
-reply={reply}
-
+<Route
+path="/register"
+element={<Register/>}
 />
 
 
-</div>
+<Route
+path="/"
+element={<Dashboard/>}
+/>
+
+
+</Routes>
+
+
+</BrowserRouter>
 
 );
-
 
 }
 

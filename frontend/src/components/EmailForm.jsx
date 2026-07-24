@@ -1,18 +1,20 @@
-import {useState} from "react";
+import { useState } from "react";
 
 
-function EmailForm({onGenerate, loading}){
+function EmailForm({ onGenerate, loading }) {
 
 
-const [subject,setSubject]=useState("");
+const [subject, setSubject] = useState("");
 
-const [body,setBody]=useState("");
+const [body, setBody] = useState("");
 
-const [tone,setTone]=useState("professional");
+const [tone, setTone] = useState("professional");
+
+const [length, setLength] = useState("medium");
 
 
 
-function submit(e){
+function submit(e) {
 
 e.preventDefault();
 
@@ -21,7 +23,8 @@ onGenerate({
 
 subject,
 body,
-tone
+tone,
+length
 
 });
 
@@ -51,7 +54,7 @@ Subject
 value={subject}
 
 onChange={
-e=>setSubject(e.target.value)
+e => setSubject(e.target.value)
 }
 
 placeholder="Email subject"
@@ -69,15 +72,22 @@ Email Body
 
 rows="8"
 
+maxLength="2000"
+
 value={body}
 
 onChange={
-e=>setBody(e.target.value)
+e => setBody(e.target.value)
 }
 
 placeholder="Paste customer email here"
 
 />
+
+
+<p>
+{body.length}/2000 characters
+</p>
 
 
 
@@ -91,29 +101,29 @@ Tone
 value={tone}
 
 onChange={
-e=>setTone(e.target.value)
+e => setTone(e.target.value)
 }
 
 >
 
 
-<option>
-professional
+<option value="professional">
+Professional
 </option>
 
 
-<option>
-friendly
+<option value="friendly">
+Friendly
 </option>
 
 
-<option>
-formal
+<option value="formal">
+Formal
 </option>
 
 
-<option>
-apologetic
+<option value="apologetic">
+Apologetic
 </option>
 
 
@@ -121,20 +131,67 @@ apologetic
 
 
 
-<button disabled={loading}>
+<label>
+Reply Length
+</label>
+
+
+<select
+
+value={length}
+
+onChange={
+e => setLength(e.target.value)
+}
+
+>
+
+
+<option value="short">
+Short
+</option>
+
+
+<option value="medium">
+Medium
+</option>
+
+
+<option value="detailed">
+Detailed
+</option>
+
+
+</select>
+
+
+
+<button
+
+disabled={
+loading || !subject || !body
+}
+
+>
 
 {
-loading ?
-"Generating..."
+
+loading
+
+?
+
+"AI is writing your reply..."
+
 :
+
 "Generate Reply"
+
 }
 
 </button>
 
 
 </form>
-
 
 );
 

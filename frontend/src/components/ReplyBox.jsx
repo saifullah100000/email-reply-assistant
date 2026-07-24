@@ -1,8 +1,14 @@
-function ReplyBox({reply}){
+function ReplyBox({
+reply,
+category,
+onRegenerate,
+loading
+}){
 
 
 if(!reply)
 return null;
+
 
 
 function copy(){
@@ -19,9 +25,22 @@ return (
 
 <div>
 
+
 <h2>
 Generated Reply
 </h2>
+
+
+<p>
+
+Category:
+
+<strong>
+{category}
+</strong>
+
+</p>
+
 
 
 <textarea
@@ -35,11 +54,43 @@ value={reply}
 />
 
 
+
+<br/>
+
+
 <button onClick={copy}>
 
 Copy Reply
 
 </button>
+
+
+
+<button
+
+onClick={onRegenerate}
+
+disabled={loading}
+
+>
+
+{
+
+loading
+
+?
+
+"Generating..."
+
+:
+
+"Regenerate Reply 🔄"
+
+}
+
+
+</button>
+
 
 
 </div>

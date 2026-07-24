@@ -27,17 +27,14 @@ await this.emailService.generateReply(
 
 dto.subject,
 dto.body,
-dto.tone
+dto.tone,
+dto.length
 
 );
 
 
 
-return {
-
-reply
-
-};
+return reply;
 
 
 }
