@@ -1,14 +1,11 @@
 import { useState } from "react";
 
 import EmailForm from "./components/EmailForm";
-
 import ReplyBox from "./components/ReplyBox";
-
 import { generateReply } from "./services/api";
 
 
-
-function Dashboard()  {
+function Dashboard() {
 
 
 const [reply,setReply] = useState("");
@@ -19,8 +16,6 @@ const [loading,setLoading] = useState(false);
 
 const [error,setError] = useState("");
 
-
-// Store previous request
 const [lastRequest,setLastRequest] = useState(null);
 
 
@@ -35,14 +30,11 @@ setLoading(true);
 
 setError("");
 
-
-// Save request for regeneration
 setLastRequest(data);
 
 
 
-const result =
-await generateReply(data);
+const result = await generateReply(data);
 
 
 
@@ -58,7 +50,7 @@ catch(error){
 
 
 setError(
-"Failed to generate reply"
+"Unable to generate reply. Please try again."
 );
 
 
@@ -87,7 +79,6 @@ if(!lastRequest)
 return;
 
 
-
 await handleGenerate(lastRequest);
 
 
@@ -99,7 +90,24 @@ await handleGenerate(lastRequest);
 
 return (
 
-<div>
+<div className="dashboard-container">
+
+
+<div className="dashboard-header">
+
+
+<h1>
+AI Email Reply Assistant
+</h1>
+
+
+<p>
+Generate professional customer email responses instantly using AI
+</p>
+
+
+</div>
+
 
 
 <EmailForm
@@ -112,14 +120,18 @@ loading={loading}
 
 
 
+
 {
 error &&
 
-<p>
+<div className="error-box">
+
 {error}
-</p>
+
+</div>
 
 }
+
 
 
 

@@ -4,17 +4,17 @@ import { useState } from "react";
 function EmailForm({ onGenerate, loading }) {
 
 
-const [subject, setSubject] = useState("");
+const [subject,setSubject] = useState("");
 
-const [body, setBody] = useState("");
+const [body,setBody] = useState("");
 
-const [tone, setTone] = useState("professional");
+const [tone,setTone] = useState("professional");
 
-const [length, setLength] = useState("medium");
+const [length,setLength] = useState("medium");
 
 
 
-function submit(e) {
+function submit(e){
 
 e.preventDefault();
 
@@ -22,8 +22,11 @@ e.preventDefault();
 onGenerate({
 
 subject,
+
 body,
+
 tone,
+
 length
 
 });
@@ -35,17 +38,25 @@ length
 
 return (
 
-<form onSubmit={submit}>
+<div className="ai-card">
 
 
 <h2>
-AI Email Reply Assistant
+✉️ Generate AI Reply
 </h2>
 
 
+<p style={{color:"#94a3b8"}}>
+Paste the customer's email and let AI create the perfect response.
+</p>
+
+
+
+<form onSubmit={submit}>
+
 
 <label>
-Subject
+Email Subject
 </label>
 
 
@@ -53,18 +64,17 @@ Subject
 
 value={subject}
 
-onChange={
-e => setSubject(e.target.value)
-}
+onChange={(e)=>setSubject(e.target.value)}
 
-placeholder="Email subject"
+placeholder="Example: Delayed order issue"
 
 />
 
 
 
+
 <label>
-Email Body
+Customer Email
 </label>
 
 
@@ -76,23 +86,28 @@ maxLength="2000"
 
 value={body}
 
-onChange={
-e => setBody(e.target.value)
-}
+onChange={(e)=>setBody(e.target.value)}
 
-placeholder="Paste customer email here"
+placeholder="Paste customer email here..."
 
 />
 
 
-<p>
+<p style={{color:"#64748b"}}>
+
 {body.length}/2000 characters
+
 </p>
 
 
 
+
+
+<div>
+
+
 <label>
-Tone
+Reply Tone
 </label>
 
 
@@ -100,9 +115,7 @@ Tone
 
 value={tone}
 
-onChange={
-e => setTone(e.target.value)
-}
+onChange={(e)=>setTone(e.target.value)}
 
 >
 
@@ -130,6 +143,14 @@ Apologetic
 </select>
 
 
+</div>
+
+
+
+
+
+<div>
+
 
 <label>
 Reply Length
@@ -140,9 +161,7 @@ Reply Length
 
 value={length}
 
-onChange={
-e => setLength(e.target.value)
-}
+onChange={(e)=>setLength(e.target.value)}
 
 >
 
@@ -165,6 +184,11 @@ Detailed
 </select>
 
 
+</div>
+
+
+
+
 
 <button
 
@@ -174,24 +198,31 @@ loading || !subject || !body
 
 >
 
+
 {
 
 loading
 
 ?
 
-"AI is writing your reply..."
+"🤖 AI is thinking..."
 
 :
 
-"Generate Reply"
+"✨ Generate Reply"
 
 }
+
 
 </button>
 
 
+
+
 </form>
+
+
+</div>
 
 );
 

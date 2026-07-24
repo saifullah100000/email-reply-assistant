@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 
 export default function Register(){
 
+
 const navigate = useNavigate();
 
 
-const [form,setForm]=useState({
+const [form,setForm] = useState({
 
 name:"",
 email:"",
@@ -17,25 +18,52 @@ password:""
 });
 
 
+const [loading,setLoading] = useState(false);
 
-const handleSubmit=async(e:any)=>{
+const [error,setError] = useState("");
+
+
+
+const handleSubmit = async(
+e: FormEvent<HTMLFormElement>
+)=>{
+
 
 e.preventDefault();
 
 
-try{
-
-await api.post("/auth/register",form);
+try {
 
 
-alert("Account created");
+setLoading(true);
+
+setError("");
+
+
+
+await api.post(
+"/auth/register",
+form
+);
+
+
 
 navigate("/login");
 
 
-}catch(error){
+}
+catch(error){
 
-alert("Registration failed");
+
+setError(
+"Registration failed. Try another email."
+);
+
+
+}
+finally{
+
+setLoading(false);
 
 }
 
@@ -46,50 +74,193 @@ alert("Registration failed");
 
 return (
 
-<div>
+<div className="auth-container">
 
-<h1>Register</h1>
+
+<div className="auth-card">
+
+
+<div className="auth-logo">
+
+🚀
+
+</div>
+
+
+
+<h1>
+Create Account
+</h1>
+
+
+<p className="auth-subtitle">
+
+Start using your AI Email Assistant
+
+</p>
+
+
+
+
+{
+error &&
+
+<div className="error-box">
+
+{error}
+
+</div>
+
+}
+
+
+
 
 
 <form onSubmit={handleSubmit}>
 
 
+<label>
+Full Name
+</label>
+
+
 <input
-placeholder="Name"
+
+placeholder="Enter your name"
+
+value={form.name}
+
 onChange={(e)=>
-setForm({...form,name:e.target.value})
+
+setForm({
+
+...form,
+
+name:e.target.value
+
+})
+
 }
+
 />
 
 
+
+
+
+<label>
+Email
+</label>
+
+
 <input
-placeholder="Email"
+
 type="email"
+
+placeholder="Enter your email"
+
+value={form.email}
+
 onChange={(e)=>
-setForm({...form,email:e.target.value})
+
+setForm({
+
+...form,
+
+email:e.target.value
+
+})
+
 }
+
 />
+
+
+
+
+
+<label>
+Password
+</label>
 
 
 <input
-placeholder="Password"
+
 type="password"
+
+placeholder="Create a password"
+
+value={form.password}
+
 onChange={(e)=>
-setForm({...form,password:e.target.value})
+
+setForm({
+
+...form,
+
+password:e.target.value
+
+})
+
 }
+
 />
 
 
-<button>
-Register
+
+
+
+<button disabled={loading}>
+
+
+{
+
+loading
+
+?
+
+"Creating Account..."
+
+:
+
+"Create Account"
+
+}
+
+
 </button>
+
 
 
 </form>
 
 
+
+
+<p className="auth-footer">
+
+Already have an account?
+
+
+<span
+onClick={()=>navigate("/login")}
+>
+
+ Login
+
+</span>
+
+
+</p>
+
+
+
 </div>
 
-)
+
+</div>
+
+);
 
 }
